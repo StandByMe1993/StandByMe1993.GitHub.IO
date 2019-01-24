@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="https://StandByMe.io">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="git多用户配置及hexo多用户配置">
+
+
+
+
+
+  <meta name="keywords" content="git多用户配置">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Stand By Me">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.2">
+
+
+
+<link rel="canonical" href="https://StandByMe.io/posts/1d6b5022.html">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.2">
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<script>
+(function(){
+var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?9282c7eb47325da1dcd45b58ab92e418":"https://jspassport.ssl.qhimg.com/11.0.1.js?9282c7eb47325da1dcd45b58ab92e418";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":false,"pjax":false};
+</script>
+
+    <title> git多用户配置及hexo多用户配置 - Stand By Me </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Stand By Me</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Stand By Me</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          git多用户配置及hexo多用户配置
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-01-21
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/日志/">日志</a>
+            
+          </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git配置"><span class="toc-text">Git配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#单平台单用户更新"><span class="toc-text">单平台单用户更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多平台同步更新"><span class="toc-text">多平台同步更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单平台多用户不同步更新"><span class="toc-text">单平台多用户不同步更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多平台多用户不同步更新"><span class="toc-text">多平台多用户不同步更新</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h2 id="Git配置"><a href="#Git配置" class="headerlink" title="Git配置"></a>Git配置</h2><p>Git想要与Github Pages或者Coding pages发生联系,必须有个桥梁,这个桥梁,就是那就是<strong>SSH</strong>与<strong>Git</strong>;</p>
+<p>Git配置有这么几种情况,下面分别写一下他们配置方法,针对情况按需配置<br><a id="more"></a></p>
+<h3 id="单平台单用户更新"><a href="#单平台单用户更新" class="headerlink" title="单平台单用户更新"></a>单平台单用户更新</h3><p>对于单平台单用户,配置起来很简单,现在很火的git在线仓库有码云、coding、Github,其实他们原理是一样的,国内Coding和码云比较快.</p>
+<p><strong>1.全局用户信息</strong></p>
+<p>如果是第一次将Hexo 与Github联系起来,我们需要设置username和email，因为github每次commit都会记录它们(只是联系信息,可随意)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;your_name&quot;	#your_name替换成你的名称</span><br><span class="line">git config --global user.email &quot;your_email@youremail.com&quot;	#后面替换成你的邮箱</span><br></pre></td></tr></table></figure>
+<p><strong>2.检测本地是否有SSH KEYS</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls -al ~/.ssh	#检测电脑是否有SSH KEYS</span><br><span class="line">### 如果提示 No such file or directory证明没有.ssh文件夹</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>.ssh</code>文件默认在Win用户<code>~/Users/username/</code>下.  <code>.ssh</code>文件夹下有public和private钥匙对（例如id_ras.pub和id_rsa），证明已存在SSH keys。</p>
+</blockquote>
+<p><strong>3.如果没有SSH KEY，则生成新的SSH KEY</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C your_email@youremail.com	#改为你的邮箱(联系邮箱)</span><br></pre></td></tr></table></figure>
+<p> 之后会要求确认路径和输入密码，这里我们默认的一路回车就行。成功的话会在~/下生成 <code>.ssh</code> 文件夹</p>
+<p><strong>4.[可省略步骤] ssh-agent管理秘钥</strong></p>
+<p>ssh-agent是一个私钥的管理工具,使用不同的私钥去连接不同的服务器时，需要我们手动输入私钥密码，ssh-agent可以免去这项工作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">eval &quot;$(ssh-agent -s)&quot;	#添加密钥到ssh-agent</span><br><span class="line">ssh-add ~/.ssh/id_rsa	#，添加生成的SSH key到ssh-agent</span><br></pre></td></tr></table></figure>
+<p><strong>5.与git仓库链接</strong></p>
+<p>与git在线仓库绑定，点击<code>.ssh</code>文件，打开 <code>id_rsa.pub</code>，复制里面的key，粗暴点就是 Ctrl+a 然后 Ctrl+c,以Github为例(其他大同小异),步骤分别为:</p>
+<p>登录Github，右上角 头像 -&gt; <code>Settings</code> —&gt; <code>SSH and GPG keys</code> —&gt; <code>New SSH key</code> 。把公钥粘贴到key中，填好title并点击 <code>Add SSH key</code></p>
+<p><strong>6.验证成功与否</strong></p>
+<p><em>验证Github</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>如果是第一次的会提示是否continue，输入<strong>yes</strong>就会看到自己的用户名。这就表示已成功连上github!</p>
+<p><em>验证coding</em></p>
+<p>同上，按<strong>yes</strong>就会看到自己的用户名.</p>
+<blockquote>
+<p><strong>问题：</strong>假如ssh-key配置失败，那么只要以下步骤就能完全解决</p>
+<p>首先，清除所有的key-pair<br>ssh-add -D<br>rm -r ~/.ssh<br>删除你在github中的public-key</p>
+<p>重新生成ssh密钥对<br>ssh-keygen -t rsa -C “<a href="mailto:xxx@xxx.com" target="_blank" rel="noopener">xxx@xxx.com</a>“</p>
+<p>接下来正常操作<br>在github上添加公钥public-key:<br>1、首先将/.ssh/id_rsa.pub公钥中内容复制到剪切板<br>2、在github上添加公钥时，直接复制即可<br>3、保存</p>
+</blockquote>
+<p><strong>7.修改Hexo站点配置文件(__config.yml)</strong></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repository:</span> <span class="string">git@github.com:YourName/YourName.github.io.git</span>	<span class="comment">#git ssh地址</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+<h3 id="多平台同步更新"><a href="#多平台同步更新" class="headerlink" title="多平台同步更新"></a>多平台同步更新</h3><p>这里多平台单用户是指:只在Github或者Coding上只注册一个用户,想要同步更新,下面以Hexo+github+coding双线博客为例,使用<strong>同一个秘钥</strong>就可以了,现在分享大概步骤</p>
+<p><strong>1.登录或注册coding</strong></p>
+<p>有账户登录,没有账户直接搜索注册</p>
+<p><strong>2.Coding添加SSH Key(无须重新生成)</strong></p>
+<p>复制已经生成好的<code>id_rsa.pub</code>中的密匙,登上Coding，登录进入主页，点击 <code>账户</code> —&gt; <code>SSH公钥</code> —&gt; 输入key再点击 <code>添加</code></p>
+<p><em>验证ssH Key</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@git.coding.net	#选输入 yes 回车看到用户名说明链接成功了</span><br></pre></td></tr></table></figure>
+<p><em>创建仓库</em></p>
+<p>仓库命名的格式建议为<strong>{user_name}.github.io</strong>，</p>
+<p><em>设置hexo分支(如果不想博客源码,以及md源文件备份,可以省略这步骤)</em></p>
+<p>在<strong>{user_name}.coding.me</strong>仓库下,点击<code>代码</code> —&gt; <code>分支管理</code> —&gt; <code>新建分支</code> —&gt;创建名为 <code>hexo</code> 分支 —&gt;点击 master后面的 <code>修改默认分支</code> 设置 hexo 为默认分支</p>
+<p><em>开启Pages 服务,获取SSH</em></p>
+<p>点击<code>代码</code>—&gt;<code>Pages服务</code> —&gt;<code>静态pages</code>—&gt;部署来源:<code>master 分支</code>   ,然后获取 <strong>SSH</strong></p>
+<p><strong>3.hexo 站点配置文件(__config.yml)修改</strong></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span></span><br><span class="line"><span class="attr">    github:</span> <span class="string">git@github.com:your_name/your_name.github.io.git</span></span><br><span class="line"><span class="attr">    coding:</span> <span class="string">git@git.coding.net:your_name/your_name.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+<h3 id="单平台多用户不同步更新"><a href="#单平台多用户不同步更新" class="headerlink" title="单平台多用户不同步更新"></a>单平台多用户不同步更新</h3><p>例如github,平常有一台电脑, 多个github帐号的SSH key切换, 更新多个hexo博客</p>
+<blockquote>
+<p>这里默认你本地已经有一个<code>id_rsa.pub</code>了,如果在有一个github账号,该如何创建密匙更新hexo博客呢?</p>
+</blockquote>
+<p><strong>1.创建.ssh文件</strong></p>
+<p>判断有没有<code>.ssh</code>文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh/	#进入.ssh文件夹,如果提示No such file or directory则需重新创建</span><br><span class="line">####如果有的话, 至少有id_rsa、 id_rsa.pub这两个文件(说明安装过,无所谓,也可以按照以下的步骤安装)</span><br></pre></td></tr></table></figure>
+<p>如果没有,开始创建.ssh文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">mkdir .ssh</span><br></pre></td></tr></table></figure>
+<p><strong>2.创建新的 私钥/公钥, 并指定秘钥名称:standbyme_id_rsa</strong></p>
+<p>进入<code>.ssh</code>根目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br></pre></td></tr></table></figure>
+<p><span style="color:red;">(操作方法一)</span>使用一行命令行, 然后两次回车即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -f  ~/.ssh/随便名字_id_rsa -C &quot;yourmail@xxx.com&quot;</span><br></pre></td></tr></table></figure>
+<p><span style="color:red;">(操作方法二)</span>使用下面命令建秘钥, 需要三次回车, 但是第一次回车需要输入秘钥名字.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;yourmail@xxx.com&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="https://wx4.sinaimg.cn/large/006cjkx2ly1fzbon6hhc0j30hy097t94.jpg" alt="安装选项第一个回车要填写秘钥名称"></p>
+<p>注意:这次创建新的秘钥 ,不要再三次回车了, 要在第一次回车的地方,填入新秘钥名字, 如果不填将使用默认的id_rsa , 会将原来的ssh_key覆盖. 新秘钥名后面建议加<span style="color:red;">_id_rsa</span></p>
+<p><img src="https://wx1.sinaimg.cn/large/006cjkx2ly1fzbott57rxj30gw07g74i.jpg" alt="安装完示例"></p>
+<p><strong>3.配置config</strong></p>
+<p>如果 <code>~/.ssh/</code>根路径下, 没有config, 则创建一个config文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch config</span><br></pre></td></tr></table></figure>
+<p>config配置如下, 第一个为原来的ssh key配置, standbyme为新的ssh key配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#第一个账号，默认使用的账号</span><br><span class="line">Host github.com</span><br><span class="line"> HostName github.com</span><br><span class="line"> User git</span><br><span class="line"> IdentityFile ~/.ssh/id_rsa</span><br><span class="line"># 第二个账号 standbyme</span><br><span class="line">Host standbyme.github.com # standbyme为前缀名，可以任意设置</span><br><span class="line"> HostName github.com</span><br><span class="line"> User git</span><br><span class="line"> IdentityFile ~/.ssh/standbyme_id_rsa</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>原理分析:</p>
+<p>1.ssh 客户端是通过类似 <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:githubUserName/repName.git 的地址来识别使用本地的哪个私钥的，<br> 地址中的 User 是@前面的git， Host 是@后面的github.com。</p>
+<p>2.如果所有账号的 User 和 Host 都为 git 和 github.com，那么就只能使用一个私钥。<br> 所以要对User 和 Host 进行配置，让每个账号使用自己的 Host，每个 Host 的域名做 CNAME 解析到 github.com，<br> 如上面配置中的Host standbyme.github.com。</p>
+<p>3.配置了别名之后，新的地址就是<a href="mailto:git@standbyme.github.com" target="_blank" rel="noopener">git@standbyme.github.com</a>:githubUserName/repName.git。<br> 这样 ssh 在连接时就可以区别不同的账号了。</p>
+</blockquote>
+<p><strong>4.设置新<span style="color:red;">github</span>账户SSH key</strong></p>
+<p>a打开用户目录，找到.ssh\standbyme_id_rsa.pub文件，记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006cjkx2ly1fzdecm7zeaj30so0bi74z.jpg" alt="添加新的SSH Key"></p>
+<p>将刚复制的内容粘贴到key那里，title随便填，保存。</p>
+<p><strong>5.在.ssh根目录下, 清空本地的 SSH 缓存，添加新的 SSH 密钥 到 SSH agent中</strong></p>
+<p>开启agent</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval &quot;$(ssh-agent -s)&quot;</span><br></pre></td></tr></table></figure>
+<p>进入.ssh文件夹先清除agent所有账户,然后重新添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">ssh-add -D</span><br><span class="line">ssh-add id_rsa</span><br><span class="line">ssh-add standbyme_id_rsa</span><br></pre></td></tr></table></figure>
+<p>最后确认一下新秘钥已经添加成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add -l</span><br></pre></td></tr></table></figure>
+<p><strong>6.输入指令,验证配置是否成功</strong></p>
+<p><em>默认ssh_key验证</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p><em>新ssh_key验证, 新秘钥名替换username</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@username.github.com</span><br></pre></td></tr></table></figure>
+<p><span style="color:red;">(注意)</span>如果提示如下信息, 则配置成功</p>
+<p><code>Hi yourname! You&#39;ve successfully authenticated, but GitHub does not provid</code></p>
+<p><strong>7.进入各自项目文件夹，单独设置用户名/邮箱</strong></p>
+<p><em>注意：如果有多个账号，建议使用局部的。</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 取消全局 用户名/邮箱 配置</span><br><span class="line">git config  --global --unset user.name</span><br><span class="line">git config  --global --unset user.email</span><br><span class="line"></span><br><span class="line"># 单独设置每个repo 用户名/邮箱,进入到.git文件夹</span><br><span class="line">git config user.name &quot;your_name&quot;  //在config后加上--global即全局</span><br><span class="line">git config user.email &quot;your_email@youremail.com&quot;</span><br></pre></td></tr></table></figure>
+<p>第二种单独为项目配置的方法(全局和单独配置都存在的时候会默认使用项目单独配置的)：</p>
+<p>1.打开项目所在目录，找到隐藏的.git文件夹。注意这个文件夹是隐藏的，显示隐藏出来就行。</p>
+<p>2.打开文件夹里的config文件，用记事本打开。</p>
+<p>3.添加这三行到文件：</p>
+<p>[user]<br>    name = XXX(自己的名称)<br>    email = XXXX(邮箱)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list	#	q!	强制退出,不保存</span><br></pre></td></tr></table></figure>
+<p><strong>8.最后在 hexo 配置文件修改git地址</strong></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repository:</span> <span class="string">git@username.github.com:githubUserName/githubUserName.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+<p><strong>9.配置多个git</strong></p>
+<p>配置多个git账户重复以上步骤。</p>
+<h3 id="多平台多用户不同步更新"><a href="#多平台多用户不同步更新" class="headerlink" title="多平台多用户不同步更新"></a>多平台多用户不同步更新</h3><p>在不同平台管理git,其实这个与<strong>单平台多用户不同步更新</strong> 差不多,多的就是文件夹管理公钥</p>
+<p>操作演示用github和Coding账号</p>
+<p><strong>1.<code>.ssh</code>目录下,创建coding和github文件夹</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">mkdir github</span><br><span class="line">mkdir coding</span><br></pre></td></tr></table></figure>
+<p><img src="https://wx4.sinaimg.cn/large/006cjkx2ly1fzdj3fuaadj309c04ojrc.jpg" alt="创建两个coding 和github 文件夹"></p>
+<p><strong>2.本地SSH公钥</strong></p>
+<p>进入不同的文件夹创建公钥</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh/github</span><br><span class="line">ssh-keygen -t rsa -C your_email@youremail.com	#替换你的邮箱</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>创建默认只需要三步回车,创建多个的时候要在第一个回车处填写名称,例如yourname_id_rsa</p>
+</blockquote>
+<p><strong>3.分别把对应的*id_rsa.pub中的内容复制到对应的平台</strong></p>
+<p>打开对应的平台,找到对应的*id_rsa.pub中的内容复制到对应的平台</p>
+<p><strong>4.配置config</strong></p>
+<p>如果 <code>~/.ssh/</code>根路径下, 没有config, 则创建一个config文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch config</span><br></pre></td></tr></table></figure>
+<p>config配置如下, 第一个为原来的ssh key配置, standbyme为新的ssh key配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#第一个账号，github</span><br><span class="line">Host github.com	#如果是多账号yourname.github.com</span><br><span class="line"> HostName github.com</span><br><span class="line"> User git</span><br><span class="line"> IdentityFile ~/.ssh/github/id_rsa</span><br><span class="line"># 第二个账号 coding</span><br><span class="line">Host git.coding.net # 如果是多账号yourname.git.coding.net</span><br><span class="line"> HostName git.coding.net</span><br><span class="line"> User git</span><br><span class="line"> IdentityFile ~/.ssh/coding/id_rsa</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>原理分析:</p>
+<p>地址中的 User 是@前面的git， Host 是@后面的github.com。</p>
+</blockquote>
+<p><strong>5.在.ssh根目录下, 清空本地的 SSH 缓存，添加新的 SSH 密钥 到 SSH agent中</strong></p>
+<p>开启agent</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval &quot;$(ssh-agent -s)&quot;</span><br></pre></td></tr></table></figure>
+<p>进入.ssh文件夹先清除agent所有账户,然后重新添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh	#进入.ssh文件夹</span><br><span class="line">ssh-add -D	#清除agent保存的所有公钥,这步很重要,如果不做或默认缓存ssh</span><br><span class="line">ssh-add ~/.ssh/github/id_rsa</span><br><span class="line">ssh-add ~/.ssh/coding/id_rsa</span><br></pre></td></tr></table></figure>
+<p>最后确认一下新秘钥已经添加成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add -l</span><br></pre></td></tr></table></figure>
+<p><strong>6.输入指令,验证配置是否成功</strong></p>
+<p><em>github验证</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p><em>coding验证</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@git.coding.net</span><br></pre></td></tr></table></figure>
+<p><span style="color:red;">(注意)</span>如果提示如下信息, 则配置成功</p>
+<p><code>Hi yourname! You&#39;ve successfully authenticated, but GitHub does not provid</code></p>
+<p><strong>7.进入各自项目文件夹，单独设置用户名/邮箱</strong></p>
+<p><em>注意：如果有多个账号，建议使用局部的。</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 取消全局 用户名/邮箱 配置</span><br><span class="line">git config  --global --unset user.name</span><br><span class="line">git config  --global --unset user.email</span><br><span class="line"></span><br><span class="line"># 单独设置每个repo 用户名/邮箱,,进入到项目的.git文件夹下执行</span><br><span class="line">git config user.name &quot;用户名&quot;  //在config后加上--global即全局</span><br><span class="line">git config user.email &quot;邮箱&quot;</span><br></pre></td></tr></table></figure>
+<p><em>查看配置是否成功</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+<p><strong>8.最后在 hexo 配置文件修改git地址</strong></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repository:</span> <span class="string">git@username.github.com:githubUserName/githubUserName.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+<p><strong>9.配置多个git</strong></p>
+<p>配置多个git账户重复以上步骤。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://StandByMe.io">Mason</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://StandByMe.io/posts/1d6b5022.html">https://StandByMe.io/posts/1d6b5022.html</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="nofollow" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/hexo/">hexo</a>
+            
+              <a href="/tags/git/">git</a>
+            
+              <a href="/tags/git多用户/">git多用户</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/b296d235.html">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Markdown语法十分钟入门教程</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/4f8603fa.html">
+        <span class="next-text nav-default">hexo github博客的搭建</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    <a class="hexo-link" rel="nofollow" href="https://StandByMe.io/">StandByMe.io</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    <a class="theme-link" target="_blank" href="https://standbyme.io/sitemap.xml">站点地图</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2018 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Mason</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.2"></script>
+
+  </body>
+</html>
