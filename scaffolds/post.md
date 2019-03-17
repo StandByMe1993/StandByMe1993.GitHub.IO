@@ -2,7 +2,7 @@
 title: {{ title }}
 tags:
   - tag
-categories: 
+categories: 日志
 keywords: 'key'
 date: {{ date }}
 ---

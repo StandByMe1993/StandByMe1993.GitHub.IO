@@ -3,7 +3,9 @@ title: Hello World
 abbrlink: 4a17b156
 date: 2019-01-15 04:44:12
 categories: 日志
-tags: [Hello World]
+tags:
+  - blog
+  - hello world
 keywords: Hello World,StandByMe.io,StandByMe,Stand By Me
 ---
 ## 廖胜于无

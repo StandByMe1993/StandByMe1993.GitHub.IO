@@ -3,7 +3,9 @@ title: hexo github博客的搭建
 abbrlink: 4f8603fa
 date: 2019-01-21 02:44:32
 categories: 日志
-tags: [hexo,github]
+tags:
+  - hexo
+  - github
 keywords: hexo,hexo github
 ---
 

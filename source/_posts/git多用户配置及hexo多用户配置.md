@@ -3,8 +3,10 @@ title: git多用户配置及hexo多用户配置
 abbrlink: 1d6b5022
 date: 2019-01-21 03:44:32
 categories: 日志
-tags: [hexo,git,git多用户]
-keywords: git多用户配置
+tags:
+  - hexo
+  - git
+keywords: hexo,git,git多用户
 ---
 ## Git配置
 

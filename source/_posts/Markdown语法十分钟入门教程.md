@@ -1,12 +1,9 @@
 ---
 title: Markdown语法十分钟入门教程
-tags:
-  - Markdown文档
-  - Markdown教程
-  - Markdown
-  - Markdown语法
 categories: 日志
 keywords: 'Markdown文档,Markdown教程,Markdown语法'
+tags:
+  - Markdown
 abbrlink: b296d235
 date: 2019-01-22 05:39:51
 ---
